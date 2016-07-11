@@ -44,17 +44,22 @@ let godfatherFilms = [
     "The Godfather Part III"
 ]
 
+print(movies)
+// ["Toy Story": ["Toy Story", "Toy Story 2", "Buzz Lightyear of Star Command: The Adventure Begins", "Toy Story 3", "Toy Story 4"], "Star Wars": ["Star Wars", "The Empire Strikes Back", "Star Wars: Episode VI", "Star Wars: Episode I", "Star Wars: Episode II", "Star Wars: Episode III", "Star Wars: The Clone Wars", "Star Wars: The Force Awakens", "Star Wars: Episode VIII", "Star Wars: Episode IX"], "The Fast and the Furious": ["The Fast and the Furious", "2 Fast 2 Furious", "Turbo-Charged Prelud", "Tokyo Drift", "Fast & Furious", "Los Bandoleros", "Fast Five", "Fast & Furious 6", "Furious 7", "Fast 8"]]
+//did not contain "The Godfather"
 
 // UPDATING KEYS
 
-let result1 = movies.updateValue(godfatherFilms, forKey: "The Godfather")
+let result1 = movies.updateValue(godfatherFilms, forKey: "The Godfather") //adding new key
 let result2 = movies.updateValue(fastAndFuriousFilms, forKey: "The Fast and the Furious")
+//this method has a return value that tells you whether a key was added or updated. This return type is an optional. If a new key/value pair was added, the return value is nil; if it was updated, is the key's new value wrapped in an optional
+
 
 print(result1)
-print(result2)
+print(result2) //optional pops up!
 
 let films = movies["The Godfather"]
-print(films)
+print(films) //optional pops up again!
 
 if let godfatherMovies = movies["The Godfather"] {
     print(godfatherMovies)
@@ -70,6 +75,7 @@ if var films = movies["The Fast and the Furious"] {
     
     movies["The Fast and the Furious"] = films
 }
+// have to be careful to add the very last line within this if statement, otherwise it doesn't update the [String] within the movies dictionary b/c when you unwrap an optional, you get a COPY OF THE ARRAY back. when you append on this copy, it doesn't affect hte original array stored in the dictionary, so follow code below
 
 if let fastMovies = movies["The Fast and the Furious"] {
     for (index, film) in fastMovies.enumerate() {
@@ -90,7 +96,7 @@ if let fast3rFilms = movies["The Fast and the Furious"] {
 }
 
 movies.removeValueForKey("The Fast and the Furious")
-
+//alternate method to remove. if the key exists in teh dictionary, this method deletes it and returns the value wrapped in an optional. if the key does not exist, it returns nil, so it removes the key and lets you know ehther the key existed or not
 
 
 // COUNTING ITEMS
@@ -135,6 +141,7 @@ if emptyDictionary.isEmpty {
 // RETRIEVING KEYS
 
 let planetNames = Array(planetsAndTheirMoons.keys)
+//remember that the keys property will not necessarily return the keys int he same order you defined or added them into the dictionary!! they are UNORDERED!! same thing with values in the next section 
 
 for planet in planetsAndTheirMoons.keys {
     print(planet)
